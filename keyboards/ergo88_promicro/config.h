@@ -51,11 +51,13 @@
 
 /* ws2812 RGB LED */
 #define RGB_DI_PIN D3
-
-#define RGBLED_NUM 12    // Number of LEDs
+#define RGBLIGHT_ANIMATIONS
+#define RGBLED_NUM 38    // Number of LEDs
+#define RGBLED_SPLIT {19, 19}
 
 #define TAPPING_TERM 200
-#define TAPPING_TERM_PER_KEY
+
+#define PERMISSIVE_HOLD_PER_KEY
 #define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
 
 /*
@@ -67,7 +69,7 @@
 // #define NO_DEBUG
 
 /* disable print */
-// #define NO_PRINT
+// #define NO_PRINT5
 
 /* disable action features */
 //#define NO_ACTION_LAYER
