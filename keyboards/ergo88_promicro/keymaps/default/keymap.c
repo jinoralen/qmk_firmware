@@ -11,20 +11,20 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = KEYMAP(
-		KC_ESC , KC_GRV       , KC_2   , KC_3         , KC_4          , KC_5          , KC_6          , TG(_OTHER)   ,                    TO(_QWERTY)   , KC_7            , KC_8            , KC_9          , KC_0          , KC_MINS, KC_EQL , KC_DELETE, 
-		KC_TAB , KC_1         , KC_Q   , KC_W         , KC_E          , KC_R          , KC_T          , KC_PGUP      ,                    KC_HOME       , KC_Y            , KC_U            , KC_I          , KC_O          , KC_P   , KC_LBRC, KC_BSPC  , 
-		KC_VOLU, KC_LSFT      , KC_A   , KC_S         , KC_D          , KC_F          , KC_G          , KC_PGDOWN    ,                    KC_END        , KC_H            , KC_J            , KC_K          , KC_L          , KC_SCLN, KC_QUOT, KC_ENT   , 
-		KC_VOLD, KC_LCTL      , KC_Z   , KC_X         , KC_C          , KC_V          , KC_B          , KC_LALT      ,                    KC_RALT       , KC_N            , KC_M            , KC_COMM       , KC_DOT        , KC_SLSH, KC_RBRC, KC_BSLS  , 
-		KC_MUTE, KC_F1        , KC_F2  , LALT_T(KC_F3), LCTL_T(KC_F4) , LSFT_T(KC_F5) , KC_F6         , KC_LWIN      ,                    CS(KC_APP)    , KC_F7           , LSFT_T(KC_F8)   , RCTL_T(KC_F9) , LALT_T(KC_F10), KC_F11 , KC_F12 , KC_PSCR  , 
-		                                                LCTL_T(KC_DEL), KC_SPC        , KC_ENT        , KC_BSPC      ,                    CA(KC_ENT)    , LT(_SYM, KC_ESC), KC_RSFT         , RCTL_T(KC_TAB)
+		KC_ESC , KC_GRV    , KC_2     , KC_3         , KC_4          , KC_5          , KC_6          , TG(_OTHER)   ,                    TO(_QWERTY), KC_7      , KC_8            , KC_9          , KC_0          , KC_MINS, KC_EQL , KC_DELETE, 
+		KC_TAB , KC_1      , KC_Q     , KC_W         , KC_E          , KC_R          , KC_T          , KC_PGUP      ,                    KC_HOME    , KC_Y      , KC_U            , KC_I          , KC_O          , KC_P   , KC_LBRC, KC_BSPC  , 
+		KC_VOLU, KC_DEL    , KC_A     , KC_S         , KC_D          , KC_F          , KC_G          , KC_PGDOWN    ,                    KC_END     , KC_H      , KC_J            , KC_K          , KC_L          , KC_SCLN, KC_QUOT, KC_ENT   , 
+		KC_VOLD, KC_TAB    , KC_Z     , KC_X         , KC_C          , KC_V          , KC_B          , KC_LALT      ,                    KC_RALT    , KC_N      , KC_M            , KC_COMM       , KC_DOT        , KC_SLSH, KC_RBRC, KC_BSLS  , 
+		KC_MUTE, CS(KC_F1) , CA(KC_F2), LALT_T(KC_F3), LCTL_T(KC_F4) , LSFT_T(KC_F5) , KC_F6         , KC_LWIN      ,                    KC_APP     , KC_F7     , LSFT_T(KC_F8)   , RCTL_T(KC_F9) , LALT_T(KC_F10), KC_F11 , KC_F12 , KC_PSCR  , 
+		                                               KC_LCTL       , KC_SPC        , KC_ENT        , KC_BSPC      ,                    KC_ESC     , MO(_SYM)  , KC_RSFT         , KC_RCTL
 	),
 	[_SYM] = KEYMAP(
-		_______, KC_F1  , KC_F2  , KC_F3  , KC_F4        , KC_F5        , KC_F6        , _______,     _______, KC_F7     , KC_F8     , KC_F9     , KC_F10    , KC_F11   , KC_F12 , _______,
-		_______, _______, KC_HASH, KC_DLR , KC_LCBR      , KC_RCBR      , KC_MINS      , KC_ASTR,     KC_BRK , KC_HOME   , C(KC_LEFT), C(KC_RGHT), KC_END    , KC_PGUP  , _______, _______,
-		_______, _______, KC_PERC, KC_UNDS, KC_LPRN      , KC_RPRN      , KC_EQL       , KC_CIRC,     KC_INS , KC_LEFT   , KC_DOWN   , KC_UP     , KC_RGHT   , KC_PGDOWN, _______, _______, 
-		_______, _______, KC_AMPR, KC_PIPE, KC_LT        , KC_GT        , KC_PLUS      , KC_SLSH,     _______, S(KC_LEFT), S(KC_DOWN), S(KC_UP)  , S(KC_RGHT), KC_DEL   , _______, _______, 
-		_______, _______, _______, _______, _______      , _______      , _______      , _______,     _______, _______   , _______   , _______   , _______   , _______  , _______, _______, 
-				                            OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), _______,     _______, _______   , _______   , _______
+		_______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , _______,     _______, KC_F7     , KC_F8     , KC_F9     , KC_F10    , KC_F11   , KC_F12 , _______,
+		_______, _______, KC_HASH, KC_DLR , KC_LCBR, KC_RCBR, KC_MINS, KC_ASTR,     KC_BRK , KC_HOME   , C(KC_LEFT), C(KC_RGHT), KC_END    , KC_PGUP  , _______, _______,
+		_______, _______, KC_PERC, KC_UNDS, KC_LPRN, KC_RPRN, KC_EQL , KC_CIRC,     KC_INS , KC_LEFT   , KC_DOWN   , KC_UP     , KC_RGHT   , KC_PGDOWN, _______, _______, 
+		_______, _______, KC_AMPR, KC_PIPE, KC_LT  , KC_GT  , KC_PLUS, KC_SLSH,     _______, S(KC_LEFT), S(KC_DOWN), S(KC_UP)  , S(KC_RGHT), KC_DEL   , _______, _______, 
+		_______, _______, _______, _______, _______, _______, _______, _______,     _______, _______   , _______   , _______   , _______   , _______  , _______, _______, 
+				                            KC_LCTL, KC_LSFT, KC_LALT, _______,     _______, _______   , _______   , _______
 	),
 	
 	[_OTHER] = KEYMAP(
@@ -47,18 +47,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 #ifdef RGBLIGHT_ENABLE
-void keyboard_post_init_user(void) {
-    rgblight_disable_noeeprom();
-    /*
-    rgblight_enable_noeeprom(); // Enables RGB, without saving settings
-    rgblight_sethsv_noeeprom(HSV_PURPLE);
-    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-    */
+
+void keyboard_pre_init_user(void) {
+   	rgblight_disable_noeeprom();
 }
-#endif
+
+void keyboard_post_init_user(void) {
+	rgblight_sethsv_noeeprom(HSV_BLUE);
+    rgblight_mode_noeeprom(23);
+	rgblight_disable_noeeprom();
+}
 
 uint32_t layer_state_set_user(uint32_t state) {
-#ifdef RGBLIGHT_ENABLE
     switch (biton32(state)) {
         case _QWERTY:
 	        rgblight_disable_noeeprom();
@@ -69,7 +69,9 @@ uint32_t layer_state_set_user(uint32_t state) {
 			rgblight_sethsv_noeeprom(HSV_GREEN);
             break;
         case _OTHER: 
+			rgblight_sethsv_noeeprom(HSV_BLUE);
 	        rgblight_enable_noeeprom();
+			rgblight_sethsv_noeeprom(HSV_BLUE);
             rgblight_mode_noeeprom(2);
 			rgblight_sethsv_noeeprom(HSV_BLUE);
             break;
@@ -79,9 +81,12 @@ uint32_t layer_state_set_user(uint32_t state) {
 			rgblight_sethsv_noeeprom(HSV_RED);
             break;
     }
-#endif // RGBLIGHT_ENABLE
+	rgblight_set();
+
     return state;
 }
+
+#endif // RGBLIGHT_ENABLE
 
 bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -104,15 +109,6 @@ bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
 	    case RCTL_T(KC_TAB):
             return true;
 			
-        default:
-            return false;
-    }
-}
-
-bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case LT(_SYM, KC_ESC):
-            return true;
         default:
             return false;
     }

@@ -52,6 +52,7 @@
 /* ws2812 RGB LED */
 #define RGB_DI_PIN D3
 #define RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_SLEEP
 #define RGBLED_NUM 38    // Number of LEDs
 #define RGBLED_SPLIT {19, 19}
 
