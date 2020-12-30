@@ -4,38 +4,29 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = KEYMAP(										 							 
-                 KC_GRV, KC_2, KC_3, KC_4, KC_5   , KC_6   ,                                              KC_7   , KC_8   , KC_9   , KC_0  , KC_MINS, KC_EQL , 
-        KC_ESC , KC_1  , KC_Q, KC_W, KC_E, KC_R   , KC_T   , KC_PGUP  ,                          KC_HOME, KC_Y   , KC_U   , KC_I   , KC_O  , KC_P   , KC_LBRC, KC_BSLS, 
-        KC_LSFT, KC_DEL, KC_A, KC_S, KC_D, KC_F   , KC_G   , KC_PGDOWN,                          KC_END , KC_H   , KC_J   , KC_K   , KC_L  , KC_SCLN, KC_QUOT, KC_ENT , 
-                 KC_TAB, KC_Z, KC_X, KC_C, KC_V   , KC_B   , _______  , KC_MUTE,        KC_MPLY, _______, KC_N   , KC_M   , KC_COMM, KC_DOT, KC_SLSH, KC_RBRC,
-                                           _______, _______, _______  ,                          _______, _______, _______,      
-										                         _______,                    _______,
-										                             _______,            _______,  
-																	 	 _______,     _______
+                 KC_GRV, KC_2, KC_3, KC_4, KC_5   , KC_6   ,                                                 KC_7   , KC_8   , KC_9   , KC_0  , KC_MINS, KC_EQL , 
+        KC_ESC , KC_1  , KC_Q, KC_W, KC_E, KC_R   , KC_T   , KC_PGUP   ,                          KC_HOME  , KC_Y   , KC_U   , KC_I   , KC_O  , KC_P   , KC_LBRC, KC_BSLS, 
+        KC_LSFT, KC_DEL, KC_A, KC_S, KC_D, KC_F   , KC_G   , KC_PGDOWN ,                          KC_END   , KC_H   , KC_J   , KC_K   , KC_L  , KC_SCLN, KC_QUOT, KC_ENT , 
+                 KC_TAB, KC_Z, KC_X, KC_C, KC_V   , KC_B   , TG(_OTHER), KC_MUTE,        KC_MPLY, TG(_GAME), KC_N   , KC_M   , KC_COMM, KC_DOT, KC_SLSH, KC_RBRC,
+                                           KC_LALT, KC_LWIN, KC_LCTL   ,                          KC_LALT  , KC_APP , KC_PSCR,      
+										                         KC_SPC,                    KC_LSFT,
+										                             KC_ENT,            MO(_SYMR),  
+																	 	 KC_BSPC,     KC_ESC
 	),
 };
 
 #ifdef RGBLIGHT_ENABLE
 
-void keyboard_pre_init_user(void) {
-   	rgblight_disable_noeeprom();
-}
-
 void keyboard_post_init_user(void) {
-	rgblight_sethsv_noeeprom(HSV_BLUE);
-    rgblight_mode_noeeprom(23);
-	rgblight_disable_noeeprom();
+	        rgblight_enable_noeeprom();
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+			rgblight_sethsv_noeeprom(HSV_WHITE);
 }
 #endif
 
 uint32_t layer_state_set_user(uint32_t state) {
 #ifdef RGBLIGHT_ENABLE
-    switch (biton32(state)) {
-        case _QWERTY:
-	        rgblight_disable_noeeprom();
-            break;
-    }
-	rgblight_set();
+
 #endif // RGBLIGHT_ENABLE
     return state;
 }

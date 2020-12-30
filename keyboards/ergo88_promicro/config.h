@@ -48,6 +48,13 @@
 
 /* Enables This makes it easier for fast typists to use dual-function keys */
 #define PERMISSIVE_HOLD
+#define PERMISSIVE_HOLD_PER_KEY
+
+#define TAPPING_TERM 200
+#define TAPPING_TERM_PER_KEY
+
+#define IGNORE_MOD_TAP_INTERRUPT
+#define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
 
 /* ws2812 RGB LED */
 #define RGB_DI_PIN D3
@@ -55,11 +62,6 @@
 #define RGBLIGHT_SLEEP
 #define RGBLED_NUM 38    // Number of LEDs
 #define RGBLED_SPLIT {19, 19}
-
-#define TAPPING_TERM 200
-
-#define PERMISSIVE_HOLD_PER_KEY
-#define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
 
 /*
  * Feature disable options
