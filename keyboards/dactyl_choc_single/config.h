@@ -1,27 +1,18 @@
 #pragma once
 
 #include "config_common.h"
-#define PRODUCT Ergo88
+#define PRODUCT DactylChocSingleProMicro
 
 /* key matrix size */
 // Rows are doubled-up
-#define MATRIX_ROWS 12
-#define MATRIX_COLS 8
+#define MATRIX_ROWS 9
+#define MATRIX_COLS 6
 
 // wiring of each half
-#define MATRIX_COL_PINS { B6, B2, B3, B1, F7, F6, F5, F4 }
-#define MATRIX_ROW_PINS { B5, B4, E6, D7, C6, D4 }
+#define MATRIX_COL_PINS { F4, F5, F6, F7, B1, B3 }
+#define MATRIX_ROW_PINS { B2, B6, B5, B4, E6, D7, C6, D4, D0 }
 
 #define DIODE_DIRECTION COL2ROW
-
-/* Select hand configuration */
-//#define MASTER_LEFT
-#define MASTER_RIGHT
-//#define EE_HANDS
-
-/* serial.c configuration for split keyboard */
-#define USE_SERIAL
-#define SOFT_SERIAL_PIN D0
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
@@ -50,21 +41,19 @@
 #define PERMISSIVE_HOLD
 #define PERMISSIVE_HOLD_PER_KEY
 
-#define HOLD_ON_OTHER_KEY_PRESS
-#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
-
 #define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY
 
 #define IGNORE_MOD_TAP_INTERRUPT
 #define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
 
+#define TAPPING_FORCE_HOLD
+
 /* ws2812 RGB LED */
-#define RGB_DI_PIN D3
+#define RGB_DI_PIN D0
 #define RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_SLEEP
-#define RGBLED_NUM 38    // Number of LEDs
-#define RGBLED_SPLIT {19, 19}
+#define RGBLED_NUM 18    // Number of LEDs
 
 /*
  * Feature disable options
