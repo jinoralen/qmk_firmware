@@ -38,11 +38,6 @@
 #define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY
 
-#define IGNORE_MOD_TAP_INTERRUPT
-#define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
-
-#define TAPPING_FORCE_HOLD
-
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.

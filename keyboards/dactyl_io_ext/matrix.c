@@ -128,3 +128,17 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
     
     return changed;
 }
+
+
+// DO NOT REMOVE
+// Needed for proper wake/sleep
+void matrix_power_up(void) {
+    mc_init();
+    i2c_initialize();
+
+    // initialize matrix state: all keys off
+    for (uint8_t i=0; i < MATRIX_ROWS; i++) {
+        matrix[i] = 0;
+    }
+
+}
