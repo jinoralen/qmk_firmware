@@ -124,3 +124,48 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM;
     }
 }
+
+#ifdef RGBLIGHT_ENABLE
+
+void keyboard_pre_init_user(void) {
+   	rgblight_disable_noeeprom();
+}
+
+void keyboard_post_init_user(void) {
+	rgblight_sethsv_noeeprom(HSV_BLUE);
+    rgblight_mode_noeeprom(23);
+	rgblight_disable_noeeprom();
+}
+
+#endif // RGBLIGHT_ENABLE
+
+uint32_t layer_state_set_user(uint32_t state) {
+#ifdef RGBLIGHT_ENABLE
+    switch (biton32(state)) {
+        case _QWERTY:
+	        rgblight_disable_noeeprom();
+            break;
+        case _SYML:
+	        rgblight_enable_noeeprom();
+            rgblight_mode_noeeprom(34);
+			rgblight_sethsv_noeeprom(HSV_BLUE);
+            break;
+        case _SYMR:
+	        rgblight_enable_noeeprom();
+            rgblight_mode_noeeprom(25);
+			rgblight_sethsv_noeeprom(HSV_GREEN);
+            break;
+
+        case _OTHER: 
+			rgblight_sethsv_noeeprom(HSV_BLUE);
+	        rgblight_enable_noeeprom();
+			rgblight_sethsv_noeeprom(HSV_BLUE);
+            rgblight_mode_noeeprom(2);
+			rgblight_sethsv_noeeprom(HSV_BLUE);
+            break;
+	}
+	
+	rgblight_set();
+#endif // RGBLIGHT_ENABLE
+    return state;
+}
