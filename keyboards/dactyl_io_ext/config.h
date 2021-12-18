@@ -38,6 +38,12 @@
 #define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY
 
+#define RGB_DI_PIN F4
+#define RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_SLEEP
+#define RGBLED_NUM 16    // Number of LEDs
+
+
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.

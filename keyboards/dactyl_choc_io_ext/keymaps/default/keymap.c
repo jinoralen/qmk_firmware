@@ -58,10 +58,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[_OTHER] = KEYMAP(
         KC_ESC  , _______ , _______ , _______ , _______ , _______    ,         _______     , _______ , _______ , _______ , _______ , _______ ,
-	    _______ , A(KC_F4), KC_DEL  , KC_UP   , KC_TAB  , KC_PGUP    ,         KC_PSLS     , KC_7    , KC_8    , KC_9    , KC_MINS , KC_EQL  ,
-		_______ , C(KC_W) , KC_LEFT , KC_DOWN , KC_RGHT , KC_PGDOWN  ,         KC_PAST     , KC_4    , KC_5    , KC_6    , KC_PLUS , KC_NUBS , 
-		_______ , _______ , KC_VOLD , KC_MUTE , KC_VOLU , _______    ,         KC_0        , KC_1    , KC_2    , KC_3    , KC_LPRN , KC_RPRN , 
-		                    _______ , _______ , KC_APP  , TO(_QWERTY),         _______     , RESET   , KC_PDOT , KC_PENT , 
+	    _______ , A(KC_F4), KC_DEL  , KC_UP   , KC_TAB  , KC_PGUP    ,         _______     , _______ , _______ , _______ , _______ , RGB_HUI ,
+		_______ , C(KC_W) , KC_LEFT , KC_DOWN , KC_RGHT , KC_PGDOWN  ,         _______     , _______ , _______ , _______ , _______ , RGB_SAI , 
+		_______ , _______ , KC_VOLD , KC_MUTE , KC_VOLU , _______    ,         _______     , _______ , _______ , _______ , _______ , RGB_VAI , 
+		                    _______ , _______ , KC_APP  , TO(_QWERTY),         _______     , RESET   , RGB_RMOD, RGB_MOD , 
 		                                        _______ , _______    ,         KC_RGHT     , KC_UP   , 
 		                                        _______ , _______    ,         KC_LEFT     , KC_DOWN
 	)
@@ -132,8 +132,8 @@ void keyboard_pre_init_user(void) {
 }
 
 void keyboard_post_init_user(void) {
-	rgblight_sethsv_noeeprom(HSV_BLUE);
-    rgblight_mode_noeeprom(23);
+	rgblight_sethsv_noeeprom(0, 0, 0);
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
 	rgblight_disable_noeeprom();
 }
 
@@ -147,21 +147,19 @@ uint32_t layer_state_set_user(uint32_t state) {
             break;
         case _SYML:
 	        rgblight_enable_noeeprom();
-            rgblight_mode_noeeprom(34);
-			rgblight_sethsv_noeeprom(HSV_BLUE);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT + 3);
+			rgblight_sethsv_noeeprom(170, 255, 170);
             break;
         case _SYMR:
 	        rgblight_enable_noeeprom();
-            rgblight_mode_noeeprom(25);
-			rgblight_sethsv_noeeprom(HSV_GREEN);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT + 7);
+			rgblight_sethsv_noeeprom(170, 255, 170);
             break;
 
         case _OTHER: 
-			rgblight_sethsv_noeeprom(HSV_BLUE);
 	        rgblight_enable_noeeprom();
-			rgblight_sethsv_noeeprom(HSV_BLUE);
-            rgblight_mode_noeeprom(2);
-			rgblight_sethsv_noeeprom(HSV_BLUE);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING);
+			rgblight_sethsv_noeeprom(170, 255, 170);
             break;
 	}
 	
