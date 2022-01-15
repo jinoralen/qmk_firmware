@@ -102,26 +102,26 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     }
 } 
 
-#ifdef RGBLIGHT_ENABLE
+#ifdef RGBLIGHT_ENAB
 
 const rgblight_segment_t PROGMEM osm_ctl_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {7, 1, HSV_PURPLE},
+    {5, 1, HSV_PURPLE},
     {10, 1, HSV_PURPLE}
 );
 
 const rgblight_segment_t PROGMEM osm_alt_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {8, 1, HSV_CYAN},
-    {11, 1, HSV_CYAN}
+    {6, 1, HSV_CYAN},
+    {9, 1, HSV_CYAN}
 );
 
 const rgblight_segment_t PROGMEM osm_sft_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {9, 1, HSV_CHARTREUSE},
-    {12, 1, HSV_CHARTREUSE}
+    {7, 1, HSV_CHARTREUSE},
+    {8, 1, HSV_CHARTREUSE}
 );
 
 const rgblight_segment_t PROGMEM osm_gui_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 2, HSV_SPRINGGREEN},    
-    {18, 2, HSV_SPRINGGREEN}      
+    {14, 2, HSV_SPRINGGREEN}      
 );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
