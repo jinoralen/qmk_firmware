@@ -102,7 +102,7 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     }
 } 
 
-#ifdef RGBLIGHT_ENAB
+#ifdef RGBLIGHT_ENABLE
 
 const rgblight_segment_t PROGMEM osm_ctl_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {5, 1, HSV_PURPLE},
