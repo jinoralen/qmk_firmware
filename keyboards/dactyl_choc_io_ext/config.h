@@ -37,26 +37,14 @@
 
 #define TAPPING_TERM 270
 
-#define RGB_DI_PIN F4
-#define RGBLIGHT_ANIMATIONS
+#define RGB_DI_PIN D5 
+#define RGBLIGHT_EFFECT_BREATHING
+#define RGBLIGHT_EFFECT_STATIC_GRADIENT
 #define RGBLIGHT_SLEEP
 #define RGBLIGHT_LAYERS
 #define RGBLED_NUM 20    // Number of LEDs
 
-/*
- * Feature disable options
- *  These options are also useful to firmware size reduction.
- */
-
-/* disable debug print */
-// #define NO_DEBUG
-
-/* disable print */
-// #define NO_PRINT5
-
-/* disable action features */
-//#define NO_ACTION_LAYER
-//#define NO_ACTION_TAPPING
-//#define NO_ACTION_ONESHOT
-//#define NO_ACTION_MACRO
-//#define NO_ACTION_FUNCTION
+// SPI_SCK_PIN B1
+// SPI_MOSI_PIN B2
+// SPI_MISO_PIN B3
+#define ADNS9800_CS_PIN B6

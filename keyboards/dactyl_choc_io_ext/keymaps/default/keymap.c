@@ -1,5 +1,7 @@
 #include QMK_KEYBOARD_H
 
+#include "pointing_device.h"
+
 #define _QWERTY 0
 
 #define _SYMR 1
@@ -14,19 +16,21 @@
 #define S_LEFT  MT(MOD_LGUI, KC_LEFT)
 #define S_RIGHT MT(MOD_LALT, KC_RGHT)
 
-#define S_HOME  MT(MOD_LALT | MOD_LGUI, KC_HOME)
+#define S_HOME  MT(MOD_MEH, KC_HOME)
 #define S_END   MT(MOD_MEH, KC_END)
 
 #define S_SPC   LT(_SYML, KC_SPC)
 #define S_TAB   MT(MOD_LSFT, KC_TAB)
 
-#define S_BSLS  MT(MOD_LGUI, KC_BSLS)
+#define S_BSLS  MT(MOD_LCTL, KC_BSLS)
 #define S_ESC   MT(MOD_LALT, KC_ESC)
 
 #define OS_LCTL OSM(MOD_LCTL)
 #define OS_LSFT OSM(MOD_LSFT)
 #define OS_LALT OSM(MOD_LALT)
 #define OS_LWIN OSM(MOD_LGUI)
+
+static bool is_mouse_enabled = false;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = KEYMAP(
@@ -51,20 +55,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			
 	[_SYML] = KEYMAP(
 	    KC_MUTE , _______ , _______ , _______ , _______ , _______   ,         _______, _______ , _______ , _______ , _______ , _______ , 
-	    _______ , _______ , _______ , KC_UP   , _______ , KC_PGUP   ,         _______, _______ , _______ , _______ , _______ , _______ , 
-		_______ , _______ , KC_LEFT , KC_DOWN , KC_RGHT , KC_PGDN   ,         _______, _______ , _______ , _______ , _______ , _______ , 
+	    _______ , _______ , KC_VOLD , KC_UP   , KC_VOLU , KC_PGUP   ,         _______, KC_BTN1 , KC_MS_U , KC_BTN2 , KC_WH_U , _______ , 
+		_______ , _______ , KC_LEFT , KC_DOWN , KC_RGHT , KC_PGDN   ,         _______, KC_MS_L , KC_MS_D , KC_MS_R , KC_WH_D , _______ , 
 		KC_F1   , KC_F2   , KC_F3   , KC_F4   , KC_F5   , KC_F6     ,         KC_F7  , KC_F8   , KC_F9   , KC_F10  , KC_F11  , KC_F12  , 
-		                    OS_LALT , OS_LWIN , KC_SLEP , TO(_OTHER),         _______, _______ , OS_LCTL , OS_LSFT ,  
+		                    OS_LALT , OS_LWIN , KC_SLEP , TO(_OTHER),         _______, _______ , KC_BTN1 , KC_BTN2 ,  
 		                                        _______ , _______   ,         _______, _______ , 
 		                                        KC_LALT , _______   ,         _______, _______
 	), 
 
 	[_OTHER] = KEYMAP(
-        KC_MUTE , _______ , _______ , _______ , _______ , _______    ,         _______     , _______ , _______ , _______ , _______ , _______ ,
-	    _______ , A(KC_F4), KC_DEL  , KC_UP   , KC_TAB  , KC_PGUP    ,         _______     , _______ , _______ , _______ , _______ , RGB_HUI ,
-		_______ , C(KC_W) , KC_LEFT , KC_DOWN , KC_RGHT , KC_PGDN    ,         _______     , _______ , _______ , _______ , _______ , RGB_SAI , 
-		_______ , _______ , _______ , _______ , _______ , _______    ,         _______     , _______ , _______ , _______ , _______ , RGB_VAI , 
-		                    KC_VOLD , KC_VOLU , KC_APP  , TO(_QWERTY),         _______     , RESET   , RGB_RMOD, RGB_MOD , 
+        KC_MUTE , _______ , _______ , _______ , _______ , _______    ,         _______     , _______ , _______ , _______ , RGB_RMOD , RGB_MOD ,
+	    _______ , A(KC_F4), KC_VOLD , KC_UP   , KC_VOLU , KC_PGUP    ,         _______     , KC_BTN1 , KC_MS_U , KC_BTN2 , KC_WH_U  , RGB_HUI ,
+		_______ , C(KC_W) , KC_LEFT , KC_DOWN , KC_RGHT , KC_PGDN    ,         _______     , KC_MS_L , KC_MS_D , KC_MS_R , KC_WH_D  , RGB_SAI , 
+		_______ , _______ , _______ , _______ , _______ , _______    ,         _______     , _______ , _______ , _______ , _______  , RGB_VAI , 
+		                    _______ , _______ , KC_APP  , TO(_QWERTY),         _______     , RESET   , _______ , _______ , 
 		                                        _______ , _______    ,         KC_RGHT     , KC_UP   , 
 		                                        _______ , _______    ,         KC_LEFT     , KC_DOWN
 	),
@@ -150,8 +154,12 @@ void update_mod_layers(uint16_t mods) {
 #endif // RGBLIGHT_ENABLE
 
 uint32_t layer_state_set_user(uint32_t state) {
+	int highest_layer = get_highest_layer(state); 
+	
+	is_mouse_enabled = highest_layer == _SYML;
+
 #ifdef RGBLIGHT_ENABLE
-    switch (get_highest_layer(state)) {
+    switch (highest_layer) {
         case _QWERTY:
 		    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
 			rgblight_sethsv_noeeprom(0, 0, 0);
@@ -181,3 +189,16 @@ void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
 	update_mod_layers(get_mods() | get_oneshot_mods());
 #endif // RGBLIGHT_ENABLE
 }							
+
+void pointing_device_init_user(void){
+    pointing_device_set_cpi(5000);
+}
+
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+	if(!is_mouse_enabled) {
+		mouse_report.x = 0;
+		mouse_report.y = 0;
+	}
+
+    return mouse_report;
+}

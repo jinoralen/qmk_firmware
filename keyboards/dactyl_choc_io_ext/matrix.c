@@ -28,39 +28,40 @@ void select_mc(uint8_t index) {
     // Output low(DDR:1, PORT:0) to select
     switch (index) {
         case 6:
+            setPinOutput(D3);
+            writePinLow(D3);
+            break;
+        case 7:
+            setPinOutput(D2);
+            writePinLow(D2);
+            break;
+        case 8:
+            setPinOutput(F4);
+            writePinLow(F4);
+            break;
+        case 9:
             setPinOutput(F5);
             writePinLow(F5);
             break;
-        case 7:
+        case 10:
             setPinOutput(F6);
             writePinLow(F6);
             break;
-        case 8:
+        case 11:
             setPinOutput(F7);
             writePinLow(F7);
             break;
-        case 9:
-            setPinOutput(B1);
-            writePinLow(B1);
-            break;
-        case 10:
-            setPinOutput(B3);
-            writePinLow(B3);
-            break;
-        case 11:
-            setPinOutput(B2);
-            writePinLow(B2);
-            break;
+
     }
 }
 
 void unselect_mc(void) {
+    setPinInput(D3);
+    setPinInput(D2);
+	setPinInput(F4);
 	setPinInput(F5);
     setPinInput(F6);
     setPinInput(F7);
-    setPinInput(B1);
-    setPinInput(B3);
-    setPinInput(B2);
 }
 
 
@@ -136,5 +137,4 @@ void matrix_power_up(void) {
     for (uint8_t i=0; i < MATRIX_ROWS; i++) {
         matrix[i] = 0;
     }
-
 }

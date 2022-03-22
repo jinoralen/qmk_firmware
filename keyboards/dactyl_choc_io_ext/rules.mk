@@ -33,5 +33,8 @@ SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 
 CUSTOM_MATRIX = lite
 
+POINTING_DEVICE_ENABLE = yes
+POINTING_DEVICE_DRIVER = adns9800
+
 SRC +=  matrix.c
 QUANTUM_LIB_SRC += i2c_master.c       
