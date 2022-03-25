@@ -17,11 +17,11 @@
 #define DESCRIPTION     A split keyboard
 
 /* mouse config */
-#define MOUSEKEY_INTERVAL       20
+#define MOUSEKEY_INTERVAL       15
 #define MOUSEKEY_DELAY          0
-#define MOUSEKEY_TIME_TO_MAX    60
+#define MOUSEKEY_TIME_TO_MAX    40
 #define MOUSEKEY_MAX_SPEED      7
-#define MOUSEKEY_WHEEL_DELAY 0
+#define MOUSEKEY_WHEEL_DELAY    0
 
 /* Set 0 if debouncing isn't needed */
 #define DEBOUNCE 5

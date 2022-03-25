@@ -55,8 +55,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			
 	[_SYML] = KEYMAP(
 	    KC_MUTE , _______ , _______ , _______ , _______ , _______   ,         _______, _______ , _______ , _______ , _______ , _______ , 
-	    _______ , _______ , KC_VOLD , KC_UP   , KC_VOLU , KC_PGUP   ,         _______, KC_BTN1 , KC_MS_U , KC_BTN2 , KC_WH_U , _______ , 
-		_______ , _______ , KC_LEFT , KC_DOWN , KC_RGHT , KC_PGDN   ,         _______, KC_MS_L , KC_MS_D , KC_MS_R , KC_WH_D , _______ , 
+	    _______ , _______ , KC_VOLD , KC_UP   , KC_VOLU , KC_PGUP   ,         KC_WH_L, KC_BTN1 , KC_BTN2 , KC_WH_R , KC_WH_U , _______ , 
+		_______ , _______ , KC_LEFT , KC_DOWN , KC_RGHT , KC_PGDN   ,         KC_MS_L, KC_MS_D , KC_MS_U , KC_MS_R , KC_WH_D , _______ , 
 		KC_F1   , KC_F2   , KC_F3   , KC_F4   , KC_F5   , KC_F6     ,         KC_F7  , KC_F8   , KC_F9   , KC_F10  , KC_F11  , KC_F12  , 
 		                    OS_LALT , OS_LWIN , KC_SLEP , TO(_OTHER),         _______, _______ , KC_BTN1 , KC_BTN2 ,  
 		                                        _______ , _______   ,         _______, _______ , 
@@ -64,13 +64,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	), 
 
 	[_OTHER] = KEYMAP(
-        KC_MUTE , _______ , _______ , _______ , _______ , _______    ,         _______     , _______ , _______ , _______ , RGB_RMOD , RGB_MOD ,
-	    _______ , A(KC_F4), KC_VOLD , KC_UP   , KC_VOLU , KC_PGUP    ,         _______     , KC_BTN1 , KC_MS_U , KC_BTN2 , KC_WH_U  , RGB_HUI ,
-		_______ , C(KC_W) , KC_LEFT , KC_DOWN , KC_RGHT , KC_PGDN    ,         _______     , KC_MS_L , KC_MS_D , KC_MS_R , KC_WH_D  , RGB_SAI , 
-		_______ , _______ , _______ , _______ , _______ , _______    ,         _______     , _______ , _______ , _______ , _______  , RGB_VAI , 
-		                    _______ , _______ , KC_APP  , TO(_QWERTY),         _______     , RESET   , _______ , _______ , 
-		                                        _______ , _______    ,         KC_RGHT     , KC_UP   , 
-		                                        _______ , _______    ,         KC_LEFT     , KC_DOWN
+        KC_MUTE , _______ , _______ , _______ , _______ , _______    ,         _______, _______ , _______ , _______ , RGB_RMOD , RGB_MOD ,
+	    _______ , A(KC_F4), KC_VOLD , KC_UP   , KC_VOLU , KC_PGUP    ,         KC_WH_L, KC_BTN1 , KC_BTN2 , KC_WH_R , KC_WH_U  , RGB_HUI ,
+		_______ , C(KC_W) , KC_LEFT , KC_DOWN , KC_RGHT , KC_PGDN    ,         KC_MS_L, KC_MS_D , KC_MS_U , KC_MS_R , KC_WH_D  , RGB_SAI , 
+		_______ , _______ , _______ , _______ , _______ , _______    ,         _______, _______ , _______ , _______ , _______  , RGB_VAI , 
+		                    _______ , _______ , KC_APP  , TO(_QWERTY),         _______, RESET   , KC_BTN1 , KC_BTN2 , 
+		                                        _______ , _______    ,         KC_RGHT, KC_UP   , 
+		                                        _______ , _______    ,         KC_LEFT, KC_DOWN
 	),
 	
 };
@@ -156,7 +156,7 @@ void update_mod_layers(uint16_t mods) {
 uint32_t layer_state_set_user(uint32_t state) {
 	int highest_layer = get_highest_layer(state); 
 	
-	is_mouse_enabled = highest_layer == _SYML;
+	is_mouse_enabled = highest_layer == _SYML || highest_layer == _OTHER;
 
 #ifdef RGBLIGHT_ENABLE
     switch (highest_layer) {
