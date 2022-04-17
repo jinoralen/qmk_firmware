@@ -23,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	
 
 	[_SYMR] = KEYMAP(
-		_______, _______, _______, _______, _______, _______, _______, _______,     _______  , _______, _______, _______, _______, _______, _______, XXXXXXX,
+		_______, _______, _______, _______, _______, _______, _______, _______,     _______  , _______, _______, _______, _______, _______, _______, RESET,
 		_______, KC_GRV , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , _______,     _______  , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX,
 		_______, KC_1   , KC_2   , XXXXXXX, KC_LPRN, KC_RPRN, XXXXXXX, _______,     _______  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, KC_MINS, KC_EQL , XXXXXXX, 
 		_______, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, KC_CIRC, _______,     TO(_GAME), KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS, KC_PLUS, XXXXXXX, 
@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 			
 	[_SYML] = KEYMAP(
-		_______, _______, _______, _______, _______, _______, _______, _______   ,     _______, _______, _______, _______, _______, _______, _______, _______, 
+		_______, _______, _______, _______, _______, _______, _______, _______   ,     _______, _______, _______, _______, _______, _______, _______, RESET, 
 		_______, _______, _______, KC_HOME, KC_UP  , KC_END , KC_PGUP, KC_VOLU   ,     _______, _______, _______, _______, _______, _______, _______, _______,  
 		KC_ENT , _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, KC_VOLD   ,     _______, _______, _______, _______, _______, _______, _______, _______, 
 		_______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , TO(_OTHER),     _______, KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______,  
@@ -96,55 +96,4 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         default:
             return TAPPING_TERM;
     }
-}
-	
-#ifdef RGBLIGHT_ENABLE
-
-void keyboard_pre_init_user(void) {
-   	rgblight_disable_noeeprom();
-}
-
-void keyboard_post_init_user(void) {
-	rgblight_sethsv_noeeprom(HSV_BLUE);
-    rgblight_mode_noeeprom(23);
-	rgblight_disable_noeeprom();
-}
-
-#endif // RGBLIGHT_ENABLE
-
-uint32_t layer_state_set_user(uint32_t state) {
-#ifdef RGBLIGHT_ENABLE
-    switch (biton32(state)) {
-        case _QWERTY:
-	        rgblight_disable_noeeprom();
-            break;
-        case _SYML:
-	        rgblight_enable_noeeprom();
-            rgblight_mode_noeeprom(34);
-			rgblight_sethsv_noeeprom(HSV_BLUE);
-            break;
-        case _SYMR:
-	        rgblight_enable_noeeprom();
-            rgblight_mode_noeeprom(25);
-			rgblight_sethsv_noeeprom(HSV_GREEN);
-            break;
-
-        case _OTHER: 
-			rgblight_sethsv_noeeprom(HSV_BLUE);
-	        rgblight_enable_noeeprom();
-			rgblight_sethsv_noeeprom(HSV_BLUE);
-            rgblight_mode_noeeprom(2);
-			rgblight_sethsv_noeeprom(HSV_BLUE);
-            break;
-	    case _GAME: 
-			rgblight_sethsv_noeeprom(HSV_GREEN);
-	        rgblight_enable_noeeprom();
-			rgblight_sethsv_noeeprom(HSV_GREEN);
-            rgblight_mode_noeeprom(2);
-			rgblight_sethsv_noeeprom(HSV_GREEN);
-            break;
-    }
-	rgblight_set();
-#endif // RGBLIGHT_ENABLE
-    return state;
 }

@@ -8,20 +8,6 @@
 #define MATRIX_ROWS 12
 #define MATRIX_COLS 8
 
-// wiring of each half
-#define MATRIX_COL_PINS { B6, B2, B3, B1, F7, F6, F5, F4 }
-#define MATRIX_ROW_PINS { B5, B4, E6, D7, C6, D4 }
-
-#define DIODE_DIRECTION COL2ROW
-
-/* Select hand configuration */
-//#define MASTER_LEFT
-#define MASTER_RIGHT
-//#define EE_HANDS
-
-/* serial.c configuration for split keyboard */
-#define USE_SERIAL
-#define SOFT_SERIAL_PIN D0
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
@@ -58,28 +44,3 @@
 
 #define IGNORE_MOD_TAP_INTERRUPT
 #define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
-
-/* ws2812 RGB LED */
-#define RGB_DI_PIN D3
-#define RGBLIGHT_ANIMATIONS
-#define RGBLIGHT_SLEEP
-#define RGBLED_NUM 38    // Number of LEDs
-#define RGBLED_SPLIT {19, 19}
-
-/*
- * Feature disable options
- *  These options are also useful to firmware size reduction.
- */
-
-/* disable debug print */
-// #define NO_DEBUG
-
-/* disable print */
-// #define NO_PRINT5
-
-/* disable action features */
-//#define NO_ACTION_LAYER
-//#define NO_ACTION_TAPPING
-//#define NO_ACTION_ONESHOT
-//#define NO_ACTION_MACRO
-//#define NO_ACTION_FUNCTION
