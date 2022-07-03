@@ -106,7 +106,7 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 
 const rgblight_segment_t PROGMEM osm_ctl_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {5, 1, HSV_PURPLE},
-    {10, 1, HSV_PURPLE}
+    {8, 1, HSV_PURPLE}
 );
 
 const rgblight_segment_t PROGMEM osm_alt_layer[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -116,7 +116,7 @@ const rgblight_segment_t PROGMEM osm_alt_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 
 const rgblight_segment_t PROGMEM osm_sft_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {7, 1, HSV_CHARTREUSE},
-    {8, 1, HSV_CHARTREUSE}
+    {10, 1, HSV_CHARTREUSE}
 );
 
 const rgblight_segment_t PROGMEM osm_gui_layer[] = RGBLIGHT_LAYER_SEGMENTS(
