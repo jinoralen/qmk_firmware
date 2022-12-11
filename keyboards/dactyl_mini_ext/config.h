@@ -1,11 +1,11 @@
 #pragma once
 
 #include "config_common.h"
-#define PRODUCT DactylChocIOext
+#define PRODUCT DactylMiniExt
 
 /* key matrix size */
 // Rows are doubled-up
-#define MATRIX_ROWS 12
+#define MATRIX_ROWS 10
 #define MATRIX_COLS 6
 
 /* USB Device descriptor parameter */
@@ -17,11 +17,11 @@
 #define DESCRIPTION     A split keyboard
 
 /* mouse config */
-#define MOUSEKEY_INTERVAL       15
+#define MOUSEKEY_INTERVAL       20
 #define MOUSEKEY_DELAY          0
-#define MOUSEKEY_TIME_TO_MAX    40
+#define MOUSEKEY_TIME_TO_MAX    60
 #define MOUSEKEY_MAX_SPEED      7
-#define MOUSEKEY_WHEEL_DELAY    0
+#define MOUSEKEY_WHEEL_DELAY 0
 
 /* Set 0 if debouncing isn't needed */
 #define DEBOUNCE 5
@@ -35,25 +35,4 @@
 #define PERMISSIVE_HOLD
 #define PERMISSIVE_HOLD_PER_KEY
 
-#define IGNORE_MOD_TAP_INTERRUPT
-#define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
-
-#define TAPPING_FORCE_HOLD
-#define TAPPING_FORCE_HOLD_PER_KEY
-
-#define HOLD_ON_OTHER_KEY_PRESS
-#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
-
 #define TAPPING_TERM 270
-
-#define RGB_DI_PIN D5 
-#define RGBLIGHT_EFFECT_BREATHING
-#define RGBLIGHT_EFFECT_STATIC_GRADIENT
-#define RGBLIGHT_SLEEP
-#define RGBLIGHT_LAYERS
-#define RGBLED_NUM 20    // Number of LEDs
-
-// SPI_SCK_PIN B1
-// SPI_MOSI_PIN B2
-// SPI_MISO_PIN B3
-#define ADNS9800_CS_PIN B6
