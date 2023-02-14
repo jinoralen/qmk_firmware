@@ -14,6 +14,7 @@
 #define SSYMR   LM(_SYMR, MOD_LSFT)
 
 #define S_SPC   LT(_SYML, KC_SPC)
+#define SFT_SPC SFT_T(KC_SPC)
 
 #define S_UP    MT(MOD_LGUI, KC_UP)
 #define S_DOWN  MT(MOD_LALT, KC_DOWN)
@@ -40,14 +41,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_DEL  , KC_A   , KC_S    , KC_D    , KC_F      , KC_G              , KC_H       , KC_J    , KC_K   , KC_L   , KC_SCLN  , KC_QUOT , 
         MT_TAB  , KC_Z   , KC_X    , KC_C    , KC_V      , KC_B              , KC_N       , KC_M    , KC_COMM, KC_DOT , KC_SLSH  , MT_RBRC , 
 		                   S_DOWN  , S_UP    , _______   , S_HOME            , S_END      , _______ , S_LEFT , S_RIGHT,  
-		                                       KC_LCTL   , S_SPC             , KC_LSFT    , S_ESC   , 
+		                                       KC_LCTL   , S_SPC             , SFT_SPC    , S_ESC   , 
 		                                       KC_BSPC   , KC_ENT            , SYMR       , SSYMR
 	),
 
 	[_SYMR] = KEYMAP(
 	    _______, _______, _______, _______, _______, _______ ,         _______   , _______ , _______  , _______, _______, _______, 
-	    _______, KC_GRV , KC_3   , KC_4   , KC_5   , KC_6    ,         KC_7      , KC_8    , KC_9     , KC_0   , KC_MINS, KC_BSPC, 
-		KC_DEL , KC_1   , KC_2   , KC_LPRN, KC_RPRN, KC_BSLS ,         KC_LEFT   , KC_DOWN , KC_UP    , KC_RGHT, KC_EQL , KC_ENT , 
+	    _______, KC_2   , KC_3   , KC_4   , KC_5   , KC_6    ,         KC_7      , KC_8    , KC_9     , KC_0   , KC_MINS, KC_BSPC, 
+		KC_DEL , KC_1   , KC_NUBS, KC_LPRN, KC_RPRN, KC_BSLS ,         KC_LEFT   , KC_DOWN , KC_UP    , KC_RGHT, KC_EQL , KC_ENT , 
 		MT_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6   ,         KC_F7     , KC_F8   , KC_F9    , KC_F10 , KC_F11 , MT_F12 , 
 	                      _______, _______, _______, _______ ,         TO(_GAME) , _______ , KC_BRK   , KC_INS,  
 		                                    _______, _______ ,         _______   , _______ , 
@@ -116,7 +117,9 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 		case S_SPC:
             return true;		
-		
+		case SFT_SPC:
+            return true;	
+				
 		case S_ESC:
             return true;	
 
