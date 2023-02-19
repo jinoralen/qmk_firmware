@@ -178,3 +178,89 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
                   return false;
       }
 }
+
+#ifdef RGBLIGHT_ENABLE
+
+const rgblight_segment_t PROGMEM ctl_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 1, HSV_PURPLE},
+    {7, 1, HSV_PURPLE}
+);
+
+const rgblight_segment_t PROGMEM alt_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 1, HSV_CYAN},
+    {6, 1, HSV_CYAN}
+);
+
+const rgblight_segment_t PROGMEM sft_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {2, 1, HSV_CHARTREUSE},
+    {5, 1, HSV_CHARTREUSE}
+);
+
+const rgblight_segment_t PROGMEM gui_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {3, 1, HSV_SPRINGGREEN},
+    {4, 1, HSV_SPRINGGREEN}
+);
+
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    ctl_layer,
+    alt_layer,   
+    sft_layer,
+    gui_layer
+);
+
+void keyboard_post_init_user(void) {
+	rgblight_disable_noeeprom();	
+	rgblight_sethsv_noeeprom(0, 0, 0);
+	rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+      rgblight_disable_noeeprom();	
+	
+	rgblight_enable_noeeprom();
+	rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+	rgblight_sethsv_noeeprom(0, 0, 0);
+	
+	rgblight_layers = my_rgb_layers;
+}
+
+void update_mod_layers(uint16_t mods) {
+	rgblight_set_layer_state(0, mods & MOD_MASK_CTRL);
+	rgblight_set_layer_state(1, mods & MOD_MASK_ALT);
+	rgblight_set_layer_state(2, mods & MOD_MASK_SHIFT);
+	rgblight_set_layer_state(3, mods & MOD_MASK_GUI);
+}
+
+void post_process_record_user(uint16_t keycode, keyrecord_t *record) {	
+	update_mod_layers(get_mods() | get_oneshot_mods());
+}	
+
+uint32_t layer_state_set_user(uint32_t state) {
+	int highest_layer = get_highest_layer(state); 
+
+      rgblight_enable_noeeprom();
+      switch (highest_layer) {
+            case _QWERTY:
+		      rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+			rgblight_sethsv_noeeprom(0, 0, 0);
+                  break;
+            case _SYML:
+                  rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT + 3);
+			rgblight_sethsv_noeeprom(170, 255, 170);
+                  break;
+            case _SYMR:
+                  rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT + 7);
+			rgblight_sethsv_noeeprom(170, 255, 170);
+                  break;
+            
+            case _MEDIA: 
+                  rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING);
+                        rgblight_sethsv_noeeprom(170, 255, 170);
+                  break;
+            case _NUM: 
+                  rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING);
+                        rgblight_sethsv_noeeprom(64, 255, 170);
+                  break;	
+	}
+
+      return state;
+}
+
+#endif // RGBLIGHT_ENABLE
