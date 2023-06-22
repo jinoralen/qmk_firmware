@@ -5,14 +5,23 @@
 
 /* key matrix size */
 // Rows are doubled-up
-#define MATRIX_ROWS 9
+#define MATRIX_ROWS 12
 #define MATRIX_COLS 6
 
 // wiring of each half
-#define MATRIX_COL_PINS { F4, F5, F6, F7, B1, B3 }
-#define MATRIX_ROW_PINS { B2, B6, B5, B4, E6, D7, C6, D4, D0 }
+#define MATRIX_COL_PINS { B6, B2, B3, B1, F7, F6 }
+#define MATRIX_ROW_PINS { B5, B4, E6, D7, C6, D4 }
 
 #define DIODE_DIRECTION COL2ROW
+
+/* Select hand configuration */
+//#define MASTER_LEFT
+#define MASTER_RIGHT
+//#define EE_HANDS
+
+/* serial.c configuration for split keyboard */
+#define USE_SERIAL
+#define SOFT_SERIAL_PIN D0
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
@@ -48,12 +57,6 @@
 #define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
 
 #define TAPPING_FORCE_HOLD
-
-/* ws2812 RGB LED */
-#define RGB_DI_PIN D0
-#define RGBLIGHT_ANIMATIONS
-#define RGBLIGHT_SLEEP
-#define RGBLED_NUM 18    // Number of LEDs
 
 /*
  * Feature disable options
