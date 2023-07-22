@@ -138,23 +138,19 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 #ifdef RGBLIGHT_ENABLE
 
 const rgblight_segment_t PROGMEM ctl_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 1, HSV_PURPLE},
-    {7, 1, HSV_PURPLE}
-);
-
-const rgblight_segment_t PROGMEM alt_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 1, HSV_CYAN},
-    {6, 1, HSV_CYAN}
+    {0, 3, HSV_PURPLE}
 );
 
 const rgblight_segment_t PROGMEM sft_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {2, 1, HSV_CHARTREUSE},
-    {5, 1, HSV_CHARTREUSE}
+    {3, 3, HSV_GREEN}
 );
 
 const rgblight_segment_t PROGMEM gui_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {3, 1, HSV_SPRINGGREEN},
-    {4, 1, HSV_SPRINGGREEN}
+    {6, 1, HSV_BLUE}
+);
+
+const rgblight_segment_t PROGMEM alt_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {7, 1, HSV_CHARTREUSE}
 );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
