@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	    _______ , A(KC_F4), KC_VOLD , KC_UP   , KC_VOLU , KC_PGUP    ,         _______, KC_BTN1 , KC_BTN2 , _______ , KC_WH_U , _______ ,
 		KC_DEL  , C(KC_W) , KC_LEFT , KC_DOWN , KC_RGHT , KC_PGDN    ,         KC_MS_L, KC_MS_D , KC_MS_U , KC_MS_R , KC_WH_D , _______ , 
 		_______ , _______ , _______ , _______ , _______ , _______    ,         _______, _______ , _______ , _______ , _______ , _______ , 
-		                    _______ , _______ , KC_APP  , TO(_QWERTY),         _______, RESET   , KC_BTN1 , KC_BTN2 , 
+		                    _______ , _______ , KC_APP  , TO(_QWERTY),         _______, QK_BOOT , KC_BTN1 , KC_BTN2 , 
 		                                        _______ , _______    ,         KC_RGHT, KC_UP   , 
 		                                        _______ , _______    ,         KC_LEFT, KC_DOWN
 	),
@@ -85,24 +85,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		                                        KC_BSPC , KC_ENT    ,         KC_LEFT     , KC_DOWN
 	),
 };
-
-
-bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
-	// define keys that aren't held (usually taped once)
-    switch (keycode) {
-		case S_ESC:
-		case MT_TAB:
-		case MT_RBRC:
-        case MT_F1:
-		case MT_F12:
-		case S_HOME:
-		case S_END:
-            return true;
-
-        default:
-            return false;
-    }
-}
 
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 	// define keys that should be handle as modifiers after pressing some other keys withing tap term
@@ -122,22 +104,6 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 		case S_DOWN:
 		case S_LEFT:
 		case S_RIGHT:
-            return true;
-
-        default:
-            return false;
-    }
-}
-
-bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-		case S_ESC:
-		case MT_TAB:
-		case MT_RBRC:
-        case MT_F1:
-		case MT_F12:
-		case S_HOME:
-		case S_END:
             return true;
 
         default:
@@ -210,7 +176,7 @@ void update_mod_layers(uint16_t mods) {
 
 #endif // RGBLIGHT_ENABLE
 
-uint32_t layer_state_set_user(uint32_t state) {
+layer_state_t layer_state_set_user(layer_state_t state) {
 	int highest_layer = get_highest_layer(state); 
 	
 	is_mouse_enabled = highest_layer == _SYML || highest_layer == _OTHER;

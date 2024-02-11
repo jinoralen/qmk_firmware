@@ -1,0 +1,29 @@
+{
+    "keyboard_name": "Dactyl Choc Ext",
+    "manufacturer": "jinoralen",
+    "maintainer": "jinoralen",
+    "bootloader": "caterina",
+    "bootmagic": {
+        "enabled": false
+    },
+    "debounce": 5,
+    "mouse_key": {
+        "enabled": true
+    },
+    "mousekey": {
+        "delay": 0,
+        "interval": 15,
+        "max_speed": 7,
+        "time_to_max": 40,
+        "wheel_delay": 0
+    },
+    "processor": "atmega32u4",
+    "tapping": {
+        "term": 270
+    },
+    "usb": {
+        "device_version": "1.0.0",
+        "pid": "0x3060",
+        "vid": "0xFEED"
+    }
+}
