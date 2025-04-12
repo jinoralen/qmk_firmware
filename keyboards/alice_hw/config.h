@@ -1,0 +1,18 @@
+#pragma once
+
+/* key matrix size */
+// Rows are doubled-up
+#define MATRIX_ROWS 10
+#define MATRIX_COLS 8
+
+/* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
+#define LOCKING_SUPPORT_ENABLE
+/* Locking resynchronize hack */
+#define LOCKING_RESYNC_ENABLE
+
+/* Enables This makes it easier for fast typists to use dual-function keys */
+#define PERMISSIVE_HOLD
+#define PERMISSIVE_HOLD_PER_KEY
+
+#define HOLD_ON_OTHER_KEY_PRESS
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
