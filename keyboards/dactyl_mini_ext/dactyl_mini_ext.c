@@ -36,19 +36,15 @@ bool isI2C_initialized() {
 
 uint8_t i2c_read8(uint8_t addr, uint8_t reg) {
     uint8_t data = 0;
-    last_err = i2c_start(addr, I2C_TIMEOUT); if(last_err) goto end;
-    last_err = i2c_readReg(addr, reg, &data, sizeof(data), I2C_TIMEOUT); if(last_err) goto end;    
-    end:
-        i2c_stop();
+    
+    last_err = i2c_read_register(addr, reg, &data, sizeof(data), I2C_TIMEOUT); 
+
     return ~data;
 
 }
 
 void i2c_write8(uint8_t addr, uint8_t reg, uint8_t data) {
-    last_err = i2c_start(addr, I2C_TIMEOUT); if(last_err) goto end;
-    last_err = i2c_writeReg(addr, reg, &data, sizeof(data), I2C_TIMEOUT); if(last_err) goto end;
-    end:
-        i2c_stop();
+    last_err = i2c_write_register(addr, reg, &data, sizeof(data), I2C_TIMEOUT);
 }
 
 i2c_status_t i2c_last_error(void) {
